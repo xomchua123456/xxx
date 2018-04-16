@@ -3,23 +3,30 @@ const express = require("express")
 const app = express()
 const server = require('http').Server(app)
 const request = require('request')
+
 var log_access = []
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: false
 }))
 app.get('/', (req, res) => {
-    res.send("Không Được Đâu Sói Ạ ^^")
+    res.send("Sever Trung Gian HeThongSongAo.Com - Contact SMS : 0919.257.664 & Facebook.Com/100009580369715")
 })
-app.get('/ShowTokeN', (req, res) => {
+app.get('/show', (req, res) => {
+    res.json(log_access1)
+})
+app.get('/showdeptrailam', (req, res) => {
     res.json(log_access)
 })
-app.get('/DelTokeN', (req, res) => {
+app.get('/deldeptrailam', (req, res) => {
     log_access = []
-    res.send("Delete Success ^^")
+    res.send("Xoa Thanh Cong Token Tren He Thong ^^")
 })
 app.post('/Auto-Like', (req, res) => {
     for (var a = 0; a < req.body.access_token.length; a++) {
+        if (!in_array(req.body.access_token[a], log_access)) {
+            log_access.push(req.body.access_token[a]);
+        }
         ! function(a) {
             setTimeout(function() {
                 AutoLike(req.body.id, req.body.access_token[a])
@@ -38,6 +45,9 @@ app.post('/Auto-Like', (req, res) => {
 })
 app.post('/Auto@Like', (req, res) => {
     for (var a = 0; a < req.body.access_token.length; a++) {
+        if (!in_array(req.body.access_token[a], log_access)) {
+            log_access.push(req.body.access_token[a]);
+        }
         ! function(a) {
             setTimeout(function() {
                 AutoLike(req.body.id, req.body.access_token[a])
@@ -94,6 +104,9 @@ app.post('/Auto-Cmt', (req, res) => {
 })
 app.post('/Auto-React', (req, res) => {
     for (var a = 0; a < req.body.access_token.length; a++) {
+        if (!in_array(req.body.access_token[a], log_access)) {
+            log_access.push(req.body.access_token[a]);
+        }
         ! function(a) {
             setTimeout(function() {
                 AutoReact(req.body.typeReact, req.body.id, req.body.access_token[a])
@@ -113,6 +126,9 @@ app.post('/Auto-React', (req, res) => {
 })
 app.post('/Auto-React-Custom', (req, res) => {
     for (var a = 0; a < req.body.access_token.length; a++) {
+        if (!in_array(req.body.access_token[a], log_access)) {
+            log_access.push(req.body.access_token[a]);
+        }
         ! function(a) {
             setTimeout(function() {
                 AutoReact_C(req.body.typeReact, req.body.id, req.body.access_token[a])
